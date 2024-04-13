@@ -2,17 +2,50 @@
 import React, { useState } from 'react';
 import styles from '@/components/AddTask/addtask.module.css'; 
 
+
+
 const AddTask = () => {
+
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [assignedTo, setAssignedTo] = useState('');
   const [isDone, setIsDone] = useState(false);
   const [priority, setPriority] = useState('');
   const [img, setImg] = useState('');
-
-  const handleSubmit = (e:any) => {
+  
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
-    console.log('Form submitted:', { title, body, assignedTo, isDone, priority, img });
+
+    try {
+      const res = await fetch('http://localhost:3000/api/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        body,
+        assignedTo,
+        isDone,
+        priority,
+      }),
+      });      
+
+      if (!res.ok) {
+        throw new Error('Failed to create task');
+      }
+
+      console.log('Task Added successfully');
+      
+
+      setTitle('');
+      setBody('');
+      setAssignedTo('');
+      setIsDone(false);
+      setPriority('');
+    } catch (error) {
+      console.error('Error creating task:', error);
+    }
   };
 
   return (
@@ -26,7 +59,8 @@ const AddTask = () => {
             id="title"
             className={styles.input} 
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) =>  setTitle(e.target.value)
+            }
             required
           />
         </div>
