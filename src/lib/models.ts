@@ -23,6 +23,10 @@ const taskSchema = new mongoose.Schema({
         type:Boolean,
         required:true,
     },
+    priority:{
+        type:String,
+        required:true
+    },
     img:{
         type:String,
     },
