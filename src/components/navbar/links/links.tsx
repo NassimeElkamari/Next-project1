@@ -10,6 +10,10 @@ const links = [
       path: "/",
   },
   {
+      title: "Tasks",
+      path: "/alltasks",
+  },
+  {
       title: "Login",
       path: "/login",
   },
