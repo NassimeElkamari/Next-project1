@@ -1,9 +1,12 @@
-import Image from "next/image";
+import React from 'react';
 
-export default function Home() {
+function HomePage() {
   return (
-    <div>
-      <h1>Helloo</h1>
+    <div >
+      <h1>Welcome to  Task Management App</h1>
+      <p>This is the homepage of the task management application.</p>
     </div>
   );
 }
+
+export default HomePage;
